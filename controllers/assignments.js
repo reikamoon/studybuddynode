@@ -1,8 +1,8 @@
 const Assignment = require('../models/assignment');
 
 module.exports = app => {
-  // INDEX
-    app.get('/assignments', (req, res) => {
+  // ASSIGNMENT INDEX
+    app.get('/', (req, res) => {
       console.log('index')
       Assignment.find({}).lean()
       .then(assignments => {

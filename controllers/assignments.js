@@ -77,7 +77,6 @@ module.exports = app => {
         res.redirect('/');
 })
 
-
 //Edit Assignment
 app.get('/assignments/:id/edit',(req, res) => {
   var currentUser = req.user;
@@ -91,28 +90,6 @@ app.get('/assignments/:id/edit',(req, res) => {
       });
 })
 
-
-// // EDIT ASSIGNMENT
-//   app.put("/assignments/:id/edit", (req,res) => {
-//     Assignment.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, assignment) => {
-//       //Handle any Database Errors
-//       if (err) return console.log(err);
-//       return res.send(assignment)
-//     })
-//       console.log("Assignment Successfully Updated.")
-//       res.redirect('/');
-// })
-
-// //EDIT ASSIGNMENT
-// app.get('/assignments/:id/edit', async (req, res) => {
-//   var currentUser = req.user;
-//   try {
-//     const assignment = await Assignment.findById(req.params.id)
-//     res.render('assignment-edit', { assignment, currentUser });
-//   } catch {
-//     res.redirect('/')
-//   }
-// })
 //EDIT ASSIGNMENT
 app.put('/assignments/:id/edit', async (req, res) => {
   let assignment

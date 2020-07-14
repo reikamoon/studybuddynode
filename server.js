@@ -11,6 +11,9 @@ app.use(express.static('public'));
 
 app.use(cookieParser()); // Add this after you initialize express.
 
+// override with POST having ?_method=DELETE or ?_method=PUT
+app.use(methodOverride('_method'))
+
 //handlebars
 const handlebars = require('handlebars');
 const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');

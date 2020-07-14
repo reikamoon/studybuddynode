@@ -78,24 +78,63 @@ module.exports = app => {
 })
 
 
-//Edit Assignment
-app.get('/assignments/:id/edit',(req, res) => {
+// //Edit Assignment
+// app.get('/assignments/:id/edit',(req, res) => {
+//   var currentUser = req.user;
+//   Assignment.findById(req.params.id).lean()
+//   .then(assignment => {
+//     console.log("Edit Assignment")
+//     res.render("assignment-edit", { assignment, currentUser });
+//     })
+//   .catch(err => {
+//     console.log(err.message);
+//       });
+// })
+
+//EDIT ASSIGNMENT
+app.get('/assignments/:id/edit', async (req, res) => {
   var currentUser = req.user;
-  Assignment.findById(req.params.id).lean()
-  console.log("Edit Assignment")
-  return res.render('assignment-edit', {currentUser});
+  try {
+    const assignment = await Assignment.findById(req.params.id)
+    res.render('assignment-edit', { assignment, currentUser });
+  } catch {
+    res.redirect('/')
+  }
+})
+//EDIT ASSIGNMENT
+app.put('/assignments/:id', async (req, res) => {
+  let assignment
+  try {
+    assignment = await Assignment.findById(req.params.id)
+    assignment.name = req.body.name,
+    assignment.url = req.body.url,
+    assignment.description = req.body.description,
+    assignment.duedate = req.body.duedate,
+    assignment.dropbox = req.body.dropbox
+    await assignment.save()
+    res.redirect('/')
+  }catch{
+    if (assignment == null) {
+      console.log("Assignmentt is null.")
+      res.redirect('/')
+    }else{
+      res.render('assignment-edit', { assignment, currentUser })
+    }
+    }
 })
 
 
-// EDIT ASSIGNMENT
-  app.put("/assignments/:id/edit", (req,res) => {
-    Assignment.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, assignment) => {
-      //Handle any Database Errors
-      if (err) return res.status(500).send(err);
-      return res.send(assignment)
-    })
-      console.log("Assignment Successfully Updated.")
-      res.redirect('/');
-})
+
+
+// // EDIT ASSIGNMENT
+//   app.put("/assignments/:id/edit", (req,res) => {
+//     Assignment.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, assignment) => {
+//       //Handle any Database Errors
+//       if (err) return console.log(err);
+//       return res.send(assignment)
+//     })
+//       console.log("Assignment Successfully Updated.")
+//       res.redirect('/');
+// })
 
 };

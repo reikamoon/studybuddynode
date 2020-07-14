@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>New Note</title>
+  <title>Edit Note</title>
 </head>
 <body>
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
       <form action="/notes/{{notes._id}}edit?_method=PUT" method="post">
-        <legend>New Note</legend>
+        <legend>Edit Note</legend>
         <div class="form-group">
           <label for="notes-title">Title</label>
           <input type="text" name="title" class="form-control" id="notes-title" value={{notes.title}}>
@@ -21,6 +21,7 @@
         </div>
         <div class='text-right'>
           <button type="submit" class="btn btn-primary">Finish</button>
+          <a href="/notes" class="btn btn-danger">Cancel</a>
         </div>
       </form>
     </div>

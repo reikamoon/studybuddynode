@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Edit Class</title>
+</head>
+<body>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <form action="/schedule/{{schedule._id}}edit?_method=PUT" method="post">
+        <legend>Edit Class</legend>
+        <div class="form-group">
+          <label for="schedule-name">Name</label>
+          <input type="text" name="name" class="form-control" id="schedule-name" value={{schedule.name}}>
+        </div>
+        <div class="form-group">
+          <label for="schedule-url">Session URL</label>
+          <input type="url" name="url" class="form-control" id="schedule-url" value={{schedule.url}}>
+        </div>
+        <div class="form-group">
+          <label for="schedule-syllabus">Syllabus[Optional]</label>
+          <input type="url" name="syllabus" class="form-control" id="schedule-syllabus" value={{schedule.syllabus}}>
+        </div>
+        <div class="form-group">
+          <label for="schedule-grades">Grades[Optional]</label>
+          <input type="url" name="grades" class="form-control" id="schedule-grades" value={{schedule.grades}}>
+        </div>
+        <div class="form-group">
+          <label for="schedule-tracker">Progress Tracker[Optional]</label>
+          <input type="url" name="tracker" class="form-control" id="schedule-tracker" value={{schedule.tracker}}>
+        </div>
+        <div class='text-right'>
+          <button type="submit" class="btn btn-primary">Add schedule</button>
+            <a href="/schedule" class="btn btn-danger">Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

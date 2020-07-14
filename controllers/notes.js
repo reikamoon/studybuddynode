@@ -84,7 +84,7 @@ module.exports = app => {
       Notes.findById(req.params.id).lean()
       .then(notes => {
         console.log("Edit Notes")
-        res.render("note-edit", { notes, currentUser });
+        res.render("notes-edit", { notes, currentUser });
         })
       .catch(err => {
         console.log(err.message);

@@ -35,11 +35,6 @@ require('./data/studybuddy-db');
 //Requirements Controllers
 require('./controllers/posts.js')(app);
 
-//Tell Our App to send to the hello world message to our homepage
-app.get('/', (req, res) => {
-  res.render('home', { msg: 'home' });
-})
-
 //Choose a Port to listen on
 const port = process.env.PORT || 3000;
 

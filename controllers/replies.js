@@ -25,7 +25,7 @@ module.exports = app => {
     reply.author = req.user._id
     // LOOKUP THE PARENT POST
     Request.findById(req.params.requestId).lean()
-      .then(post => {
+      .then(request => {
         // FIND THE CHILD COMMENT
         Promise.all([
           reply.save(),
@@ -40,11 +40,11 @@ module.exports = app => {
             ])
           })
           .then(() => {
-            res.redirect(`/posts/${req.params.postId}`)
+            res.redirect(`/helpboard/${req.params.requestId}`)
           })
           .catch(console.error)
         // SAVE THE CHANGE TO THE PARENT DOCUMENT
-        return post.save()
+        return request.save()
       })
   })
 }

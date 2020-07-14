@@ -1,4 +1,4 @@
-const Notes = require('../models/notes');
+const Notes = require('../models/note');
 
 module.exports = app => {
 //> NOTES INDEX

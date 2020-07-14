@@ -7,7 +7,6 @@ module.exports = app => {
     app.get('/helpboard', (req, res) => {
       var currentUser = req.user;
       console.log('index')
-      if (req.user) {
       Request.find({}).lean()
       .then(requests => {
         res.render("helpboard", { requests, currentUser });
@@ -15,9 +14,6 @@ module.exports = app => {
       .catch(err => {
         console.log(err.message);
           });
-        }else{
-          return res.render("unauthorized");
-        }
         })
 
 // REQUEST DETAILS

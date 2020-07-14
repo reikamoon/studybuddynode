@@ -77,6 +77,7 @@ require('./controllers/schedule.js')(app);
 require('./controllers/auth.js')(app);
 require('./controllers/helpboard.js')(app);
 require('./controllers/comments.js')(app);
+require('./controllers/replies.js')(app);
 
 //Choose a Port to listen on
 const port = process.env.PORT || 3000;

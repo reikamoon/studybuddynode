@@ -1,6 +1,11 @@
+require('dotenv').config();
 // Initialize express
 const express = require('express')
 const app = express()
+
+//Cookies and Tokens, oh my!
+var cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 
 //handlebars
 const handlebars = require('handlebars');

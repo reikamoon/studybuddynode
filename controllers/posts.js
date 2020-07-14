@@ -14,14 +14,13 @@ module.exports = app => {
           return res.render('schedule-new', {});
           })
 
-
   // CREATE ASSIGNMENT
   app.post('/assignments/new', (req, res) => {
     // INSTANTIATE INSTANCE OF POST MODEL
     const Assignment = new Assignment(req.body);
 
-    // SAVE INSTANCE OF POST MODEL TO DB
-    post.save((err, assignment) => {
+    // SAVE INSTANCE OF ASSIGNMENT MODEL TO DB
+    assignment.save((err, assignment) => {
       // REDIRECT TO THE ROOT
       return res.redirect(`/`);
     })
@@ -32,8 +31,8 @@ module.exports = app => {
     // INSTANTIATE INSTANCE OF POST MODEL
     const Schedule = new Schedule(req.body);
 
-    // SAVE INSTANCE OF POST MODEL TO DB
-    post.save((err, schedule) => {
+    // SAVE INSTANCE OF CLASS MODEL TO DB
+    schedule.save((err, schedule) => {
       // REDIRECT TO THE ROOT
       return res.redirect(`/`);
     })

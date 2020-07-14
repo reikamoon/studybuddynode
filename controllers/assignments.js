@@ -114,7 +114,7 @@ app.get('/assignments/:id/edit',(req, res) => {
 //   }
 // })
 //EDIT ASSIGNMENT
-app.put('/assignments/:id', async (req, res) => {
+app.put('/assignments/:id/edit', async (req, res) => {
   let assignment
   console.log(assignment)
   try {

@@ -9,8 +9,9 @@
 
 <body>
   <div class="message-box">
+    <br><br><br><br><br><br><br><br><br><br>
     <h1 id="welcome-message"></h1>
-    <a href="/private">Go to private area</a>
+    <a href="/assignments" class="btn btn-primary ml-1">My Assignments</a><a href="/schedule" class="btn btn-primary ml-1">My Schedule</a><a href="/notes" class="btn btn-primary ml-1">My Notes</a><hr>
   </div>
 
   <script>
@@ -18,7 +19,7 @@
     req.onreadystatechange = function () {
       if (req.readyState == 4 && req.status == 200) {
         const user = JSON.parse(req.response).user;
-        document.getElementById("welcome-message").innerText = `Welcome ${user.username}!!`;
+        document.getElementById("welcome-message").innerText = `Welcome, ${user.username}.`;
       }
     };
     req.open("GET", "http://localhost:3000/user", true);

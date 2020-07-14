@@ -1,6 +1,12 @@
+<br>
+<center><h1>My Schedule</h1>
+<a href="/schedule/new" class="btn btn-primary ml-1">Add a Class</a><a href="/" class="btn btn-primary ml-1">My Assignments</a><a href="/notes" class="btn btn-primary ml-1">My Notes</a><hr>
+</center>
+
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
         <ul>
+          {{#if schedules}}
             {{#each schedules}}
                 <li class="list-group-item">
                     <div class="lead">{{this.name}}</div>
@@ -22,6 +28,9 @@
                     {{/if}}
                 </li>
             {{/each}}
+            {{else}}
+            <h1>No Classes -- Add Some!</h1>
+            {{/if}}
         </ul>
     </div>
 </div>

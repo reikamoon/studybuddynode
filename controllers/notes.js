@@ -1,11 +1,11 @@
-const Notes = require('../models/note');
+const Notes = require('../models/notes');
 
 module.exports = app => {
 //> NOTES INDEX
   app.get('/notes', (req, res) => {
     console.log('notes')
     Notes.find({}).lean()
-    .then(schedules => {
+    .then(notes => {
       res.render("notes-index", { notes });
     })
   .catch(err => {
@@ -22,12 +22,12 @@ module.exports = app => {
 //> CREATE NOTE
   app.post('/notes/new', (req, res) => {
   // INSTANTIATE INSTANCE OF POST MODEL
-  const note = new Note(req.body);
+  const notes = new Notes(req.body);
 
-  // SAVE INSTANCE OF ASSIGNMENT MODEL TO DB
-  note.save((err, note) => {
+  // SAVE INSTANCE OF NOTES MODEL TO DB
+  notes.save((err, notes) => {
     // REDIRECT TO THE ROOT
-    return res.redirect(`/notes`);
+    return res.redirect('/notes');
   })
   });
 };

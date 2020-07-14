@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Populate = require("../utils/autopopulate");
 
 const AssignmentSchema = new Schema({
   name: { type: String, required: true },
@@ -10,7 +11,7 @@ const AssignmentSchema = new Schema({
   dropbox: { type: String, required: true }
 });
 // Always populate the author field
-PostSchema
+AssignmentSchema
     .pre('findOne', Populate('author'))
     .pre('find', Populate('author'))
 

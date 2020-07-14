@@ -35,7 +35,7 @@ module.exports = app => {
     // SAVE INSTANCE OF ASSIGNMENT MODEL TO DB
     assignment.save((err, assignment) => {
       // REDIRECT TO THE ROOT
-      return res.redirect(`/`, { currentUser });
+      return res.redirect(`/`);
     })
   });
 

@@ -99,9 +99,7 @@ require('./controllers/assignments.js')(app);
 require('./controllers/notes.js')(app);
 require('./controllers/schedule.js')(app);
 require('./controllers/auth.js')(app);
-
-
-/* REGISTER SOME USERS */
+require('./controllers/helpboard.js')(app);
 
 //Choose a Port to listen on
 const port = process.env.PORT || 3000;

@@ -11,7 +11,7 @@ const RequestSchema = new Schema({
   duedate: { type: Date, default:"None"},
 });
 // Always populate the author field
-PostSchema
+RequestSchema
     .pre('findOne', Populate('author'))
     .pre('find', Populate('author'))
 

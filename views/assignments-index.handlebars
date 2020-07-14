@@ -1,5 +1,9 @@
+<br>
+<center><h1>My Assignments</h1>
+<a href="/assignments/new" class="btn btn-primary ml-1">New Assignment</a><a href="/schedule" class="btn btn-primary ml-1">My Schedule</a><hr>
+</center>
 <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-12 col-sm-offset-8">
         <ul>
             {{#each assignments}}
                 <li class="list-group-item">
@@ -7,7 +11,7 @@
                     <p>Due Date: {{this.duedate}}</p>
                     <p>{{this.description}}</p>
                     <a href="{{this.url}}" target="_blank">Link to Assignment</a><br>
-                    <a href="{{this.dropbox}}">Turn In Link</p>
+                    <a href="{{this.dropbox}}">Turn In Link</a></p>
                 </li>
             {{/each}}
         </ul>

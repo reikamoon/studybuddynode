@@ -1,0 +1,33 @@
+<br>
+<center>
+<h1> HELP WANTED </h1>
+</center>
+<div class="row">
+    <div class="col-sm-12 col-sm-offset-8">
+        <ul>
+          {{#if requests}}
+            {{#each requests}}
+                <li class="list-group-item">
+                    <div class="lead">{{this.title}}</div>
+                    <div><small>by: {{this.author.username}}</small></div>
+                    {{#if duedate}}
+                    <p>Due Date: {{this.duedate}}</p>
+                    {{else}}
+
+                    {{/if}}
+                    <p>{{this.description}}</p>
+                    {{#if url}}
+                    <a href="{{this.url}}" target="_blank">Link to Assignment</a><br>
+                    {{else}}
+
+                    {{/if}}
+                    <a href="/assignments/{{this.id}}/edit" class="btn btn-primary ml-1">Edit</a>
+                    <a href="/assignments/{{this.id}}/delete" class="btn btn-danger">Delete</a
+                </li>
+            {{/each}}
+            {{else}}
+            <h1>No Requests!</h1>
+            {{/if}}
+        </ul>
+    </div>
+</div>

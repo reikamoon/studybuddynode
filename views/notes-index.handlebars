@@ -10,6 +10,7 @@
                 <li class="list-group-item">
                     <h1><a href="/notes/{{this._id}}">{{this.title}}</a></h1>
                     <h5>by {{this.author.username}}</h5>
+                    <a href="/notes/{{this._id}}/edit" class="btn btn-primary ml-1">Edit</a>
                     <a href="/notes/{{this._id}}/delete" class="btn btn-danger">Delete</a>
                 </li>
             {{/each}}

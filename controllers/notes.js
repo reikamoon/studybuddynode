@@ -78,6 +78,37 @@ module.exports = app => {
           res.redirect('/notes');
     })
 
+    //Edit Notes
+    app.get('/notes/:id/edit',(req, res) => {
+      var currentUser = req.user;
+      Notes.findById(req.params.id).lean()
+      .then(notes => {
+        console.log("Edit Notes")
+        res.render("note-edit", { notes, currentUser });
+        })
+      .catch(err => {
+        console.log(err.message);
+          });
+    })
 
+    //UPDATE NOTES
+    app.put('/notes/:id/edit', async (req, res) => {
+      let notes
+      console.log(notes)
+      try {
+        notes = await Notes.findById(req.params.id)
+        notes.title = req.body.title,
+        notes.content = req.body.content,
+        await notes.save()
+        res.redirect('/')
+      }catch{
+        if (notes == null) {
+          console.log("Notes is null.")
+          res.redirect('/')
+        }else{
+          res.render('notes-edit', { notes, currentUser })
+        }
+        }
+    })
 
 };

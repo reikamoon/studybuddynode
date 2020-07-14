@@ -7,7 +7,7 @@ const AssignmentSchema = new Schema({
   author : { type: Schema.Types.ObjectId, ref: "User", required: true },
   url: { type: String, required: true },
   description: { type: String, default: "description"},
-  duedate: { type: Date, required: true },
+  duedate: { type: String, required: true },
   dropbox: { type: String, required: true }
 });
 // Always populate the author field

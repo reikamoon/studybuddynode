@@ -1,8 +1,7 @@
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-  <center><h1>{{this.title}}</h1>
-  <p>by {{this.author.username}}</p>
-  <p>{{this.content}}</p>
+<br>
+  <center><h1>{{notes.title}}</h1>
+  <h5>by {{notes.author.username}}</h5>
+  <p>{{notes.content}}</p>
+<a href="/notes/{{notes._id}}/delete" class="btn btn-danger">Delete</a>
 </center>
-  </div>
 </div>

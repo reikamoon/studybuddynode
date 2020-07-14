@@ -1,6 +1,6 @@
 <br>
 <center><h1>My Assignments</h1>
-<a href="/assignments/new" class="btn btn-primary ml-1">New Assignment</a><a href="/schedule" class="btn btn-primary ml-1">My Schedule</a><a href="/notes" class="btn btn-primary ml-1">My Notes</a><hr>
+<a href="/new-assignment" class="btn btn-primary ml-1">New Assignment</a><a href="/schedule" class="btn btn-primary ml-1">My Schedule</a><a href="/notes" class="btn btn-primary ml-1">My Notes</a><hr>
 </center>
 <div class="row">
     <div class="col-sm-12 col-sm-offset-8">
@@ -13,8 +13,9 @@
                     <p>{{this.description}}</p>
                     <a href="{{this.url}}" target="_blank">Link to Assignment</a><br>
                     <a href="{{this.dropbox}}">Turn In Link</a></p>
-                    <a href="/assignments/{{this.id}}/edit" class="btn btn-primary ml-1">Edit</a>
-                    <a href="/assignments/{{this.id}}/delete" class="btn btn-danger">Delete</a
+                    <a href="/assignments/{{this._id}}" class="btn btn-primary ml-1">Read More</a>
+                    <a href="/assignments/{{this._id}}/edit" class="btn btn-primary ml-1">Edit</a>
+                    <a href="/assignments/{{this._id}}/delete" class="btn btn-danger">Delete</a>
                 </li>
             {{/each}}
             {{else}}

@@ -34,14 +34,15 @@ module.exports = app => {
     });
 
 //> NEW NOTE
-  app.get('/notes/new',(req, res) => {
+  app.get('/new-note',(req, res) => {
+      console.log(req.user)
       var currentUser = req.user;
       console.log("New Note")
       return res.render('notes-new', {currentUser});
         })
 
 //> CREATE NOTE
-  app.post("/notes/new", (req, res) => {
+  app.post("/new-note", (req, res) => {
     var notes = new Notes(req.body);
     notes.author = req.user._id;
       if (req.user) {
@@ -67,4 +68,16 @@ module.exports = app => {
       }
 
   });
+
+// DELETE NOTE
+    app.get("/notes/:id/delete", async (req,res) => {
+      const notes = await Notes
+          .findByIdAndRemove(req.params.id)
+          .then(() => 'Note successfully deleted');
+          console.log("Note Successfully Deleted.")
+          res.redirect('/notes');
+    })
+
+
+
 };

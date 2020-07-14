@@ -20,14 +20,14 @@ module.exports = app => {
 })
 
 //> NEW CLASS
-  app.get('/schedule/new',(req, res) => {
+  app.get('/new-class',(req, res) => {
     var currentUser = req.user;
     console.log("New Class")
     return res.render('schedule-new', {currentUser});
     })
 
 //> CREATE CLASS
-  app.post("/schedule/new", (req, res) => {
+  app.post("/new-class", (req, res) => {
     var schedule = new Schedule(req.body);
     schedule.author = req.user._id;
       if (req.user) {
@@ -53,4 +53,16 @@ module.exports = app => {
       }
 
   });
+
+// DELETE NOTE
+  app.get("/schedule/:id/delete", async (req,res) => {
+    const schedule = await Schedule
+        .findByIdAndRemove(req.params.id)
+        .then(() => 'Class successfully deleted');
+        console.log("Class Successfully Deleted.")
+        res.redirect('/schedule');
+  })
+
+
+
 };

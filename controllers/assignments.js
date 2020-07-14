@@ -19,15 +19,29 @@ module.exports = app => {
         }
         })
 
+// ASSIGNMENT DETAILS
+  app.get("/assignments/:id", function(req, res) {
+    // LOOK UP THE Assignment
+    var currentUser = req.user;
+    console.log("Found the Assignment")
+    Assignment.findById(req.params.id).lean()
+      .then(assignment => {
+        res.render("assignment-details", { assignment,currentUser });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  });
+
   // NEW ASSIGNMENT
-      app.get('/assignments/new',(req, res) => {
+      app.get('/new-assignment',(req, res) => {
         var currentUser = req.user;
         console.log("New Assignment")
         return res.render('assignment-new', {currentUser});
       })
 
 // CREATE ASSIGNMENT
-    app.post("/assignments/new", (req, res) => {
+    app.post("/new-assignment", (req, res) => {
       var assignment = new Assignment(req.body);
       assignment.author = req.user._id;
         if (req.user) {
@@ -53,5 +67,15 @@ module.exports = app => {
         }
 
     });
+
+// DELETE ASSIGNMENT
+  app.get("/assignments/:id/delete", async (req,res) => {
+    const assignment = await Assignment
+        .findByIdAndRemove(req.params.id)
+        .then(() => 'Assignment successfully deleted');
+        console.log("Assignment Successfully Deleted.")
+        res.redirect('/');
+})
+
 
 };

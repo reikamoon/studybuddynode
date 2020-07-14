@@ -21,6 +21,7 @@ module.exports = app => {
 // REQUEST DETAILS
   app.get("/helpboard/:id", function(req, res) {
     // LOOK UP THE POST
+    var ObjectId = mongoose.Schema.Types.ObjectId;
     Request.findById(req.params.id)
       .then(post => {
         res.render("request-details", { request });
@@ -31,14 +32,14 @@ module.exports = app => {
   });
 
 // NEW REQUEST
-    app.get('/helpboard/new',(req, res) => {
+    app.get('/new-request',(req, res) => {
       var currentUser = req.user;
       console.log("New Request")
       return res.render('request-new', {currentUser});
     })
 
 // CREATE REQUEST
-  app.post("/helpboard/new", (req, res) => {
+  app.post("/new-request", (req, res) => {
     var request = new Request(req.body);
     request.author = req.user._id;
       if (req.user) {
@@ -64,5 +65,14 @@ module.exports = app => {
       }
 
   });
+
+// DELETE Request
+    app.get("/helpboard/:id/delete", async (req,res) => {
+      const request = await Request
+          .findByIdAndRemove(req.params.id)
+          .then(() => 'Request successfully deleted');
+          console.log("Request Successfully Deleted.")
+          res.redirect('/helpboard');
+  })
 
   };

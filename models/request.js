@@ -9,6 +9,7 @@ const RequestSchema = new Schema({
   imgurl: {type: String, default:"None"},
   description: { type: String, default: "description"},
   duedate: { type: Date, required: true},
+  comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 });
 // Always populate the author field
 RequestSchema

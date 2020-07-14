@@ -3,16 +3,16 @@ const Schedule = require('../models/schedule');
 
 module.exports = app => {
   // INDEX
-    app.get('/'), (req, res) => {
+    app.get('/', (req, res) => {
       console.log('index')
-      assignment.find({}).lean()
-      .then(posts => {
-        res.render("assignments-index", { assignment });
+      Assignment.find({}).lean()
+      .then(assignments => {
+        res.render("assignments-index", { assignments });
         })
       .catch(err => {
         console.log(err.message);
           });
-          }
+        })
 
   // NEW ASSIGNMENT
       app.get('/assignments/new',(req, res) => {

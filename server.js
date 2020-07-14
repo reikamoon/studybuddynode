@@ -35,6 +35,10 @@ require('./data/studybuddy-db');
 //Requirements Controllers
 require('./controllers/posts.js')(app);
 
+app.get('/', function (req, res) {
+  res.render('assignments-index', {});
+});
+
 //Choose a Port to listen on
 const port = process.env.PORT || 3000;
 

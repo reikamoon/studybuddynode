@@ -1,10 +1,13 @@
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
         <ul>
-            {{#each assignment}}
+            {{#each assignments}}
                 <li class="list-group-item">
                     <div class="lead">{{this.name}}</div>
-                    <a href="{{this.url}}" target="_blank">{{this.url}}</a>
+                    <p>Due Date: {{this.duedate}}</p>
+                    <p>{{this.description}}</p>
+                    <a href="{{this.url}}" target="_blank">Link to Assignment</a><br>
+                    <a href="{{this.dropbox}}">Turn In Link</p>
                 </li>
             {{/each}}
         </ul>

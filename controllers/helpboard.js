@@ -34,20 +34,35 @@ module.exports = app => {
     app.get('/helpboard/new',(req, res) => {
       var currentUser = req.user;
       console.log("New Request")
-      return res.render('request-new', {});
+      return res.render('request-new', {currentUser});
     })
 
 // CREATE REQUEST
-app.post('/helpboard/new', (req, res) => {
-  var currentUser = req.user;
-  // INSTANTIATE INSTANCE OF POST MODEL
-  const request = new Request(req.body);
+  app.post("/helpboard/new", (req, res) => {
+    var request = new Request(req.body);
+    request.author = req.user._id;
+      if (req.user) {
+          var request = new Request(req.body);
+          request.author = req.user._id;
 
-  // SAVE INSTANCE OF REQUEST MODEL TO DB
-  request.save((err, request) => {
-    // REDIRECT TO THE ROOT
-    return res.redirect(`/`);
-  })
-});
+          request
+              .save()
+              .then(request => {
+                  return User.findById(req.user._id);
+              })
+              .then(user => {
+                  user.requests.unshift(request);
+                  user.save();
+                  // REDIRECT TO THE INDEX
+                  res.redirect('/helpboard');
+              })
+              .catch(err => {
+                  console.log(err.message);
+              });
+      } else {
+          return res.status(401); // UNAUTHORIZED
+      }
+
+  });
 
   };

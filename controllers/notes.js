@@ -21,19 +21,36 @@ module.exports = app => {
 
 //> NEW NOTE
   app.get('/notes/new',(req, res) => {
+      var currentUser = req.user;
       console.log("New Note")
-      return res.render('notes-new', {});
+      return res.render('notes-new', {currentUser});
         })
 
 //> CREATE NOTE
-  app.post('/notes/new', (req, res) => {
-  // INSTANTIATE INSTANCE OF POST MODEL
-  const notes = new Notes(req.body);
+  app.post("/notes/new", (req, res) => {
+    var notes = new Notes(req.body);
+    notes.author = req.user._id;
+      if (req.user) {
+          var notes = new Notes(req.body);
+          notes.author = req.user._id;
 
-  // SAVE INSTANCE OF NOTES MODEL TO DB
-  notes.save((err, notes) => {
-    // REDIRECT TO THE ROOT
-    return res.redirect('/notes');
-  })
+          notes
+              .save()
+              .then(notes => {
+                  return User.findById(req.user._id);
+              })
+              .then(user => {
+                  user.notes.unshift(notes);
+                  user.save();
+                  // REDIRECT TO THE INDEX
+                  res.redirect('/notes');
+              })
+              .catch(err => {
+                  console.log(err.message);
+              });
+      } else {
+          return res.status(401); // UNAUTHORIZED
+      }
+
   });
 };

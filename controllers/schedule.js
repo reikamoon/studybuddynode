@@ -21,20 +21,36 @@ module.exports = app => {
 
 //> NEW CLASS
   app.get('/schedule/new',(req, res) => {
+    var currentUser = req.user;
     console.log("New Class")
-    return res.render('schedule-new', {});
+    return res.render('schedule-new', {currentUser});
     })
 
 //> CREATE CLASS
-  app.post('/schedule/new', (req, res) => {
-    // INSTANTIATE INSTANCE OF SCHEDULE MODEL
-    const schedule = new Schedule(req.body);
+  app.post("/schedule/new", (req, res) => {
+    var schedule = new Schedule(req.body);
+    schedule.author = req.user._id;
+      if (req.user) {
+          var schedule = new Schedule(req.body);
+          schedule.author = req.user._id;
 
-    // SAVE INSTANCE OF CLASS MODEL TO DB
-    schedule.save((err, schedule) => {
-      // REDIRECT TO THE ROOT
-      return res.redirect(`/schedule`);
-    })
+          schedule
+              .save()
+              .then(schedule => {
+                  return User.findById(req.user._id);
+              })
+              .then(user => {
+                  user.classes.unshift(schedule);
+                  user.save();
+                  // REDIRECT TO THE NEW POST
+                  res.redirect('/schedule');
+              })
+              .catch(err => {
+                  console.log(err.message);
+              });
+      } else {
+          return res.status(401); // UNAUTHORIZED
+      }
+
   });
-
 };

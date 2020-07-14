@@ -9,32 +9,37 @@
 <body>
   <div class="row">
     <div class="col-sm-4 col-sm-offset-4">
-      <form action="/assignments/new" method="post">
+      <form action="/helpboard/new" method="post">
         <legend>New Request</legend>
-        <div class="form-group">
 
+        <div class="form-group">
           <label for="request-title">Title</label>
           <input type="text" name="title" class="form-control" id="request-title" placeholder="Request Title">
         </div>
 
         <div class="form-group">
-          <label for="request-url">URL</label>
-          <input type="url" name="url" class="form-control" id="request-url" placeholder="Request URL">
-        </div>
+        <label for="request-duedate">Due Date[Required]</label>
+        <input type="date" name="duedate" class="form-control" id="request-duedate">
+      </div>
 
-        <div class="form-group">
-          <label for="request-imgurl">Image URL</label>
-          <input type="url" name="imgurl" class="form-control" id="request-imgurl" placeholder="Request Image Url">
-        </div>
+      <div class="form-group">
+        <label for="request-url">URL[Required]</label>
+        <input type="url" name="url" class="form-control" id="request-url" placeholder="Request URL">
+      </div>
 
-        <div class="form-group">
-          <label for="request-description">Description</label>
-          <textarea name="description" class="form-control" id="request-description" placeholder="Description of Issue"></textarea>
-        </div>
+      <div class="form-group">
+        <label for="request-imgurl">Image URL</label>
+        <input type="url" name="imgurl" class="form-control" id="request-imgurl" placeholder="Request Image Url">
+      </div>
 
-        <div class='text-right'>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+      <div class="form-group">
+        <label for="request-description">Description</label>
+        <textarea name="description" class="form-control" id="request-description" placeholder="Description of Issue"></textarea>
+      </div>
+
+      <div class='text-right'>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
 
       </form>
     </div>

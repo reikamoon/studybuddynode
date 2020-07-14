@@ -8,7 +8,7 @@ const RequestSchema = new Schema({
   url: { type: String, required: true },
   imgurl: {type: String, default:"None"},
   description: { type: String, default: "description"},
-  duedate: { type: Date, default:"None"},
+  duedate: { type: Date, required: true},
 });
 // Always populate the author field
 RequestSchema

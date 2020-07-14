@@ -7,7 +7,7 @@ module.exports = app => {
       var currentUser = req.user;
       console.log('index')
       if (req.user) {
-      Assignment.find({}).lean()
+    Assignment.find({}).lean()
       .then(assignments => {
         res.render("assignments-index", { assignments, currentUser });
         })
@@ -23,20 +23,35 @@ module.exports = app => {
       app.get('/assignments/new',(req, res) => {
         var currentUser = req.user;
         console.log("New Assignment")
-        return res.render('assignment-new', {});
+        return res.render('assignment-new', {currentUser});
       })
 
-  // CREATE ASSIGNMENT
-  app.post('/assignments/new', (req, res) => {
-    var currentUser = req.user;
-    // INSTANTIATE INSTANCE OF POST MODEL
-    const assignment = new Assignment(req.body);
+// CREATE ASSIGNMENT
+    app.post("/assignments/new", (req, res) => {
+      var assignment = new Assignment(req.body);
+      assignment.author = req.user._id;
+        if (req.user) {
+            var assignment = new Assignment(req.body);
+            assignment.author = req.user._id;
 
-    // SAVE INSTANCE OF ASSIGNMENT MODEL TO DB
-    assignment.save((err, assignment) => {
-      // REDIRECT TO THE ROOT
-      return res.redirect(`/`);
-    })
-  });
+            assignment
+                .save()
+                .then(assignment => {
+                    return User.findById(req.user._id);
+                })
+                .then(user => {
+                    user.assignments.unshift(assignment);
+                    user.save();
+                    // REDIRECT TO THE NEW POST
+                    res.redirect('/');
+                })
+                .catch(err => {
+                    console.log(err.message);
+                });
+        } else {
+            return res.status(401); // UNAUTHORIZED
+        }
+
+    });
 
 };

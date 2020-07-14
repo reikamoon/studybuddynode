@@ -9,20 +9,21 @@
           {{#if requests}}
             {{#each requests}}
                 <li class="list-group-item">
-                    <div class="lead">{{this.title}}</div>
-                    <div><small>by: {{this.author.username}}</small></div>
+                    <h1>{{this.title}}</h1>
                     {{#if duedate}}
-                    <p>Due Date: {{this.duedate}}</p>
+                    <h4>Due Date: {{this.duedate}}</h4>
                     {{else}}
 
                     {{/if}}
+                    <h5>by: {{this.author.username}}</h5>
+                    <br>
                     <p>{{this.description}}</p>
                     {{#if url}}
-                    <a href="{{this.url}}" target="_blank">Link to Assignment</a><br>
+                    <a href="{{this.url}}" target="_blank">Link to Assignment</a><br><br>
                     {{else}}
 
                     {{/if}}
-                    <a href="/helpboard/{{this.id}}/details" class="btn btn-primary ml-1">Read More</a>
+                    <a href="/helpboard/{{this.id}}details" class="btn btn-primary ml-1">Read More</a>
                 </li>
             {{/each}}
             {{else}}

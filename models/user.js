@@ -7,6 +7,10 @@ const UserSchema = new Schema({
   updatedAt: { type: Date },
   password: { type: String, select: false },
   username: { type: String, required: true },
+  assignments : [{ type: Schema.Types.ObjectId, ref: "Assignment" }],
+  classes : [{ type: Schema.Types.ObjectId, ref: "Schedule" }],
+  notes : [{ type: Schema.Types.ObjectId, ref: "Notes" }],
+  requests: [{ type: Schema.Types.ObjectId, ref: "Notes" }],
 });
 
 // Must use function here! ES6 => functions do not bind this!

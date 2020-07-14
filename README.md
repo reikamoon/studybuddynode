@@ -1,6 +1,7 @@
 # StudyBuddy :pencil2: ~ Node.js vers ~
-by reikamoon :ribbon:
-
+by reikamoon :ribbon:<br>
+Original StudyBuddy[Django]: [Repo](https://github.com/reikamoon/studybuddy)<br>
+Original StudyBuddy[Heroku Link]: [Here](https://github.com/reikamoon/studybuddy)
 # Important :exclamation:
 You ***MUST*** have an account to use studybuddy! Sign up using the button on the navbar.
 
@@ -15,4 +16,3 @@ You ***MUST*** have an account to use studybuddy! Sign up using the button on th
 * Help Board for Homework Help!
 * Notes to write notes to self.
 * Better Authentication/Authorization
-

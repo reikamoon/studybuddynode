@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+        <ul>
+            {{#each schedules}}
+                <li class="list-group-item">
+                    <div class="lead">{{this.name}}</div>
+                    <a href="{{this.url}}" target="_blank">Link to Class Session</a><br>
+                    {{#if syllabus}}
+                    <a href="{{this.syllabus}}">Link to Syllabus</a><br>
+                    {{else}}
+
+                    {{/if}}
+                    {{#if grades}}
+                    <a href="{{this.grades}}">Link to Grades</a><br>
+                    {{else}}
+
+                    {{/if}}
+                    {{#if tracker}}
+                    <a href="{{this.tracker}}">Link to Tracker</a><br>
+                    {{else}}
+
+                    {{/if}}
+                </li>
+            {{/each}}
+        </ul>
+    </div>
+</div>

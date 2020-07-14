@@ -11,7 +11,7 @@ module.exports = function(app) {
            .save()
            .then(comment => {
                return Promise.all([
-                   Request.findById(req.params.postId)
+                   Request.findById(req.params.requestId)
                ]);
            })
            .then(([request, user]) => {
@@ -20,7 +20,7 @@ module.exports = function(app) {
                    request.save()
                ]);
            })
-           .then(post => {
+           .then(request => {
                res.redirect(`/helpboard/${req.params.requestId}`);
            })
            .catch(err => {

@@ -1,29 +1,41 @@
+<br>
+<center><h2>StudyBuddy Help Board<h2></center>
+<br>
 <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <a href="{{ request.url }}" class="lead">{{ request.title }}</a>
     <p>by {{request.author.username}}</p>
     {{#if duedate}}
-    <p>Due Date: {{this.duedate}}</p>
+    <p>Due Date: {{request.duedate}}</p>
     {{else}}
 
     {{/if}}
-    <p>{{this.description}}</p>
+    <p>{{request.description}}</p>
     {{#if url}}
-    <a href="{{this.url}}" target="_blank">Link to Assignment</a><br>
+    <a href="{{request.url}}" target="_blank">Link to Assignment</a><br>
     {{else}}
 
     {{/if}}
 
     {{#if imgurl}}
-    <img src="{{this.imgurl}}" alt="Image" height="50%" width="50%">
+    <img src="{{request.imgurl}}" alt="Image" height="50%" width="50%">
     {{else}}
 
     {{/if}}
   </div>
 </div>
+<br>
+<h2>Comments</h2>
 <form action="/helpboard/{{request._id}}/comments" method="post">
   <textarea class='form-control' name="content" placeholder="Comment"></textarea>
   <div class="text-right">
     <button type="submit" class="btn btn-primary">Save</button>
   </div>
 </form>
+<div class="row">
+  <div class="col-sm-12 col-sm-offset-8">
+{{#each request.comments}}
+{{> comment comment=this requestId=../request._id}}
+{{/each}}
+</div>
+</div>

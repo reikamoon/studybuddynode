@@ -3,7 +3,7 @@
   <h3>Student: {{assignment.author.username}}</h3><br>
   <h5>Due Date: {{assignment.duedate}}</h5><br>
   <h5><a href="{{assignment.url}}" target="_blank">Link to Assignment</a></h5><br>
-  <p>{{assignment.content}}</p>
+  <p>{{assignment.description}}</p>
   <h5><a href="{{assignment.dropbox}}">Turn In Link</a></h5><br>
 <a href="/assignments/{{assignment._id}}/edit" class="btn btn-primary ml-1">Edit</a> <a href="/assignments/{{assignment._id}}/delete" class="btn btn-danger">Delete</a>
 </center>

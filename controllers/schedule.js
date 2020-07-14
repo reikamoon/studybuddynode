@@ -54,7 +54,7 @@ module.exports = app => {
 
   });
 
-// DELETE NOTE
+// DELETE CLASS
   app.get("/schedule/:id/delete", async (req,res) => {
     const schedule = await Schedule
         .findByIdAndRemove(req.params.id)

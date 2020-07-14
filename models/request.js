@@ -7,7 +7,7 @@ const RequestSchema = new Schema({
   author : { type: Schema.Types.ObjectId, ref: "User", required: true },
   url: { type: String, required: true },
   imgurl: {type: String, default:"None"},
-  description: { type: String, default: "description"},
+  description: { type: String, required: true },
   duedate: { type: Date, required: true},
   comments: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 });

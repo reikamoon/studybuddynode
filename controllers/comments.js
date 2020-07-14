@@ -14,8 +14,8 @@ module.exports = function(app) {
                    Request.findById(req.params.postId)
                ]);
            })
-           .then(([post, user]) => {
-               Request.comments.unshift(comment);
+           .then(([request, user]) => {
+               request.comments.unshift(comment);
                return Promise.all([
                    request.save()
                ]);

@@ -77,5 +77,13 @@ module.exports = app => {
         res.redirect('/');
 })
 
+// EDIT ASSIGNMENT
+  app.get("/assignments/:id/edit", async (req,res) => {
+    const assignment = await Assignment
+        .findByIdAndUpdate(req.params.id)
+        .then(() => 'Assignment successfully edited');
+        console.log("Assignment Successfully Updated.")
+        res.redirect('/');
+})
 
 };

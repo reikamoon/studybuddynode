@@ -34,34 +34,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressSession);
 
-/* MONGOOSE SETUP */
-const mongoose = require('mongoose');
-const passportLocalMongoose = require('passport-local-mongoose');
-
-mongoose.connect('mongodb://localhost/MyDatabase',
-  { useNewUrlParser: true, useUnifiedTopology: true });
-
-const Schema = mongoose.Schema;
-const UserDetail = new Schema({
-  username: String,
-  password: String
-});
-
-UserDetail.plugin(passportLocalMongoose);
-const UserDetails = mongoose.model('userInfo', UserDetail, 'userInfo');
-
-/*  PASSPORT SETUP  */
-const passport = require('passport');
-app.use(passport.initialize());
-app.use(passport.session());
-
-/* PASSPORT LOCAL AUTHENTICATION */
-passport.use(UserDetails.createStrategy());
-
-passport.serializeUser(UserDetails.serializeUser());
-passport.deserializeUser(UserDetails.deserializeUser());
-
-
 // Use Body Parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -86,7 +58,7 @@ var checkAuth = (req, res, next) => {
     var decodedToken = jwt.decode(token, { complete: true }) || {};
     req.user = decodedToken.payload;
   }
-
+  console.log("Signed in!")
   next();
 };
 app.use(checkAuth);
@@ -100,6 +72,7 @@ require('./controllers/notes.js')(app);
 require('./controllers/schedule.js')(app);
 require('./controllers/auth.js')(app);
 require('./controllers/helpboard.js')(app);
+require('./controllers/comments.js')(app);
 
 //Choose a Port to listen on
 const port = process.env.PORT || 3000;

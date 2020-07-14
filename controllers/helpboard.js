@@ -1,5 +1,7 @@
 const User = require('../models/user');
 const Request = require('../models/request');
+const Comment = require('../models/comment');
+
 module.exports = app => {
 // HELP BOARD
     app.get('/helpboard', (req, res) => {
@@ -21,10 +23,10 @@ module.exports = app => {
 // REQUEST DETAILS
   app.get("/helpboard/:id", function(req, res) {
     // LOOK UP THE POST
-    var ObjectId = mongoose.Schema.Types.ObjectId;
-    Request.findById(req.params.id)
-      .then(post => {
-        res.render("request-details", { request });
+    var currentUser = req.user;
+    Request.findById(req.params.id).populate('comments').lean()
+      .then(request => {
+        res.render("request-details", { request,currentUser });
       })
       .catch(err => {
         console.log(err.message);

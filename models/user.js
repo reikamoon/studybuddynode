@@ -10,7 +10,7 @@ const UserSchema = new Schema({
   assignments : [{ type: Schema.Types.ObjectId, ref: "Assignment" }],
   classes : [{ type: Schema.Types.ObjectId, ref: "Schedule" }],
   notes : [{ type: Schema.Types.ObjectId, ref: "Notes" }],
-  requests: [{ type: Schema.Types.ObjectId, ref: "Notes" }],
+  requests: [{ type: Schema.Types.ObjectId, ref: "Requests" }],
 });
 
 // Must use function here! ES6 => functions do not bind this!

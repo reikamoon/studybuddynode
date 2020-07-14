@@ -9,7 +9,7 @@
           {{#if schedules}}
             {{#each schedules}}
                 <li class="list-group-item">
-                    <h1>{{this.name}}</h1>
+                    <h1>{{this.name}} <a href="/schedule/{{this._id}}/delete" class="btn btn-danger">Delete</a></h1>
                     <h4>Student: {{this.author.username}}</h4>
                     <h4><a href="{{this.url}}" target="_blank">Class Session</a></h4><br>
                     {{#if syllabus}}

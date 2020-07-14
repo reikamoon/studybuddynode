@@ -18,6 +18,18 @@ module.exports = app => {
         }
         })
 
+// REQUEST DETAILS
+  app.get("/posts/:id", function(req, res) {
+    // LOOK UP THE POST
+    Request.findById(req.params.id)
+      .then(post => {
+        res.render("request-details", { request });
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+  });
+
 // NEW REQUEST
     app.get('/helpboard/new',(req, res) => {
       var currentUser = req.user;

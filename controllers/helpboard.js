@@ -19,7 +19,7 @@ module.exports = app => {
         })
 
 // REQUEST DETAILS
-  app.get("/posts/:id", function(req, res) {
+  app.get("/helpboard/:id", function(req, res) {
     // LOOK UP THE POST
     Request.findById(req.params.id)
       .then(post => {

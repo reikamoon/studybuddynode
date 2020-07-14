@@ -19,6 +19,19 @@ module.exports = app => {
   }
   })
 
+// NOTES DETAILS
+    app.get("/notes/:id", function(req, res) {
+      // LOOK UP THE NOTES
+      var currentUser = req.user;
+      Notes.findById(req.params.id)
+        .then(notes => {
+          res.render("notes-details", { notes, currentUser });
+        })
+        .catch(err => {
+          console.log(err.message);
+        });
+    });
+
 //> NEW NOTE
   app.get('/notes/new',(req, res) => {
       var currentUser = req.user;

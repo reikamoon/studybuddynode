@@ -4,25 +4,26 @@
 </center>
 
 <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="col-sm-12 col-sm-offset-8">
         <ul>
           {{#if schedules}}
             {{#each schedules}}
                 <li class="list-group-item">
-                    <div class="lead">{{this.name}}</div>
-                    <a href="{{this.url}}" target="_blank">Link to Class Session</a><br>
+                    <h1>{{this.name}}</h1>
+                    <h4>Student: {{this.author.username}}</h4>
+                    <h4><a href="{{this.url}}" target="_blank">Class Session</a></h4><br>
                     {{#if syllabus}}
-                    <a href="{{this.syllabus}}">Link to Syllabus</a><br>
+                    <h5>Syllabus:<a href="{{this.syllabus}}"> Here</a></h5>
                     {{else}}
 
                     {{/if}}
                     {{#if grades}}
-                    <a href="{{this.grades}}">Link to Grades</a><br>
+                    <h5>Link to Grades: <a href="{{this.grades}}">Here</a></h5>
                     {{else}}
 
                     {{/if}}
                     {{#if tracker}}
-                    <a href="{{this.tracker}}">Link to Tracker</a><br>
+                    <h5>Link to Tracker: <a href="{{this.tracker}}">Here</a></h5><br>
                     {{else}}
 
                     {{/if}}

@@ -92,16 +92,16 @@ app.get('/assignments/:id/edit',(req, res) => {
 })
 
 
-// EDIT ASSIGNMENT
-  app.put("/assignments/:id/edit", (req,res) => {
-    Assignment.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, assignment) => {
-      //Handle any Database Errors
-      if (err) return console.log(err);
-      return res.send(assignment)
-    })
-      console.log("Assignment Successfully Updated.")
-      res.redirect('/');
-})
+// // EDIT ASSIGNMENT
+//   app.put("/assignments/:id/edit", (req,res) => {
+//     Assignment.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, assignment) => {
+//       //Handle any Database Errors
+//       if (err) return console.log(err);
+//       return res.send(assignment)
+//     })
+//       console.log("Assignment Successfully Updated.")
+//       res.redirect('/');
+// })
 
 // //EDIT ASSIGNMENT
 // app.get('/assignments/:id/edit', async (req, res) => {
@@ -113,27 +113,27 @@ app.get('/assignments/:id/edit',(req, res) => {
 //     res.redirect('/')
 //   }
 // })
-// //EDIT ASSIGNMENT
-// app.put('/assignments/:id', async (req, res) => {
-//   let assignment
-//   console.log(assignment)
-//   try {
-//     assignment = await Assignment.findById(req.params.id)
-//     assignment.name = req.body.name,
-//     assignment.url = req.body.url,
-//     assignment.description = req.body.description,
-//     assignment.duedate = req.body.duedate,
-//     assignment.dropbox = req.body.dropbox
-//     await assignment.save()
-//     res.redirect('/')
-//   }catch{
-//     if (assignment == null) {
-//       console.log("Assignment is null.")
-//       res.redirect('/')
-//     }else{
-//       res.render('assignment-edit', { assignment, currentUser })
-//     }
-//     }
-// })
+//EDIT ASSIGNMENT
+app.put('/assignments/:id', async (req, res) => {
+  let assignment
+  console.log(assignment)
+  try {
+    assignment = await Assignment.findById(req.params.id)
+    assignment.name = req.body.name,
+    assignment.url = req.body.url,
+    assignment.description = req.body.description,
+    assignment.duedate = req.body.duedate,
+    assignment.dropbox = req.body.dropbox
+    await assignment.save()
+    res.redirect('/')
+  }catch{
+    if (assignment == null) {
+      console.log("Assignment is null.")
+      res.redirect('/')
+    }else{
+      res.render('assignment-edit', { assignment, currentUser })
+    }
+    }
+})
 
 };

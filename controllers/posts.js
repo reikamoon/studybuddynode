@@ -2,6 +2,18 @@ const Assignment = require('../models/assignment');
 const Schedule = require('../models/schedule');
 
 module.exports = app => {
+  // INDEX
+    app.get('/'), (req, res) => {
+      console.log('index')
+      Assignment.find({}).lean()
+      .then(posts => {
+        res.render("assignments-index", { assignments });
+        })
+      .catch(err => {
+        console.log(err.message);
+          });
+          }
+
   // NEW ASSIGNMENT
       app.get('/assignments/new',(req, res) => {
         console.log("New Assignment")
@@ -37,4 +49,6 @@ module.exports = app => {
       return res.redirect(`/`);
     })
   });
+
+
 };

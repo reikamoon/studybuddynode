@@ -12,6 +12,8 @@
                     <p>{{this.description}}</p>
                     <a href="{{this.url}}" target="_blank">Link to Assignment</a><br>
                     <a href="{{this.dropbox}}">Turn In Link</a></p>
+                    <a href="/assignments/{{this.id}}/edit" class="btn btn-primary ml-1">Edit</a>
+                    <a href="/assignments/{{this.id}}/delete" class="btn btn-danger">Delete</a>
                 </li>
             {{/each}}
         </ul>

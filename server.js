@@ -1,11 +1,15 @@
 require('dotenv').config();
 // Initialize express
 const express = require('express')
-const app = express()
+var app = express()
 
 //Cookies and Tokens, oh my!
 var cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
+
+app.use(express.static('public'));
+
+app.use(cookieParser()); // Add this after you initialize express.
 
 //handlebars
 const handlebars = require('handlebars');
@@ -71,6 +75,21 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 
 // Use handlebars to render
 app.set('view engine', 'handlebars');
+
+//Check Authentication in Every Route
+var checkAuth = (req, res, next) => {
+  console.log("Checking authentication");
+  if (typeof req.cookies.nToken === "undefined" || req.cookies.nToken === null) {
+    req.user = null;
+  } else {
+    var token = req.cookies.nToken;
+    var decodedToken = jwt.decode(token, { complete: true }) || {};
+    req.user = decodedToken.payload;
+  }
+
+  next();
+};
+app.use(checkAuth);
 
 //Set DB
 require('./data/studybuddy-db');

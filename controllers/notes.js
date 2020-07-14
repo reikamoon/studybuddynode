@@ -23,7 +23,8 @@ module.exports = app => {
     app.get("/notes/:id", function(req, res) {
       // LOOK UP THE NOTES
       var currentUser = req.user;
-      Notes.findById(req.params.id)
+      console.log("Found the Note!")
+      Notes.findById(req.params.id).lean()
         .then(notes => {
           res.render("notes-details", { notes, currentUser });
         })

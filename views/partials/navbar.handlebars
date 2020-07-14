@@ -14,15 +14,13 @@
       <li class="nav-item">
         <a class="nav-link" href="/notes">Notes</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/login">Log in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/logout">Log Out</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/sign-up">Sign Up</a>
-      </li>
+      {{#if currentUser}}
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="/logout" class="btn btn-primary navbar-btn">Log Out</a></li>
+      {{else}}
+      <li><a href="/login" class="btn btn-primary navbar-btn">Log In</a></li>
+      <li><a href="/sign-up" class="btn btn-primary navbar-btn">Sign Up</a></li>
+      {{/if}}
     </ul>
   </div>
 </nav>

@@ -17,7 +17,7 @@ module.exports = app => {
   // CREATE ASSIGNMENT
   app.post('/assignments/new', (req, res) => {
     // INSTANTIATE INSTANCE OF POST MODEL
-    const Assignment = new Assignment(req.body);
+    const assignment = new Assignment(req.body);
 
     // SAVE INSTANCE OF ASSIGNMENT MODEL TO DB
     assignment.save((err, assignment) => {
@@ -29,7 +29,7 @@ module.exports = app => {
   // CREATE CLASS
   app.post('/schedule/new', (req, res) => {
     // INSTANTIATE INSTANCE OF POST MODEL
-    const Schedule = new Schedule(req.body);
+    const schedule = new Schedule(req.body);
 
     // SAVE INSTANCE OF CLASS MODEL TO DB
     schedule.save((err, schedule) => {

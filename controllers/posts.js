@@ -5,9 +5,9 @@ module.exports = app => {
   // INDEX
     app.get('/'), (req, res) => {
       console.log('index')
-      Assignment.find({}).lean()
+      assignment.find({}).lean()
       .then(posts => {
-        res.render("assignments-index", { assignments });
+        res.render("assignments-index", { assignment });
         })
       .catch(err => {
         console.log(err.message);

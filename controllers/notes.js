@@ -100,11 +100,11 @@ module.exports = app => {
         notes.title = req.body.title,
         notes.content = req.body.content,
         await notes.save()
-        res.redirect('/')
+        res.redirect('/notes')
       }catch{
         if (notes == null) {
           console.log("Notes is null.")
-          res.redirect('/')
+          res.redirect('/notes')
         }else{
           res.render('notes-edit', { notes, currentUser })
         }

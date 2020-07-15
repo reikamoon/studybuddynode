@@ -37,7 +37,7 @@ module.exports = app => {
             comment.comments.unshift(reply._id)
 
             return Promise.all([
-              comment.save()
+              Comment.save()
             ])
           })
           .then(() => {

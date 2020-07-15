@@ -90,7 +90,7 @@ app.get('/assignments/:id/edit',(req, res) => {
       });
 })
 
-//EDIT ASSIGNMENT
+//UPDATE ASSIGNMENT
 app.put('/assignments/:id/edit', async (req, res) => {
   let assignment
   console.log(assignment)

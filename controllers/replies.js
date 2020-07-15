@@ -4,6 +4,7 @@ var Comment = require('../models/comment')
 module.exports = app => {
   // NEW REPLY
   app.get('/helpboard/:requestId/comments/:commentId/replies/new', (req, res) => {
+    var currentUser = req.user;
     let request
     Request.findById(req.params.requestId).lean()
       .then(r => {
@@ -11,7 +12,7 @@ module.exports = app => {
         return Comment.findById(req.params.commentId).lean()
       })
       .then(comment => {
-        res.render('replies-new', { request, comment })
+        res.render('replies-new', { request, comment, currentUser })
       })
       .catch(err => {
         console.log(err.message)

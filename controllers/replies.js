@@ -30,15 +30,12 @@ module.exports = app => {
         // FIND THE CHILD COMMENT
         Promise.all([
           reply.save(),
-          Comment.findById(req.params.commentId).lean()
+          Comment.findById(req.params.commentId)
         ])
           .then(([reply, comment]) => {
             // ADD THE REPLY
             comment.comments.unshift(reply._id)
-
-            return Promise.all([
-              Comment.save()
-            ])
+        comment.save()
           })
           .then(() => {
             res.redirect(`/helpboard/${req.params.requestId}`)
